@@ -1,0 +1,49 @@
+@startuml
+class Letter {
+  - char value
+  + char getValue()
+  + String toString()
+}
+
+abstract class SentenceElement {
+  + {abstract} String toString()
+}
+
+class Main {
+  + {static} void main(String[])
+  + {static} Text transformText(String)
+  + {static} void modifyText(Text,int)
+  + {static} boolean startsWithConsonant(Word)
+}
+
+class Sentence {
+  - List<SentenceElement> elements
+  + List<SentenceElement> getElements()
+  + String toString()
+}
+
+class Word {
+  - List<Letter> letters
+  + List<Letter> getLetters()
+  + String toString()
+}
+
+class Punctuation {
+  - char value
+  + char getValue()
+  + String toString()
+}
+
+class Text {
+  - List<Sentence> sentences
+  + List<Sentence> getSentences()
+  + String toString()
+}
+
+SentenceElement <|-- Word
+SentenceElement <|-- Punctuation
+
+Sentence *-- SentenceElement
+Word *-- Letter
+Text *-- Sentence
+@enduml
